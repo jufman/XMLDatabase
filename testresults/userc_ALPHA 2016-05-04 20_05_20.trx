@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="988e70b3-0f49-43f8-b29c-3fc514b07c47" name="userc@ALPHA 2016-05-04 20:05:20" runUser="alpha\userc" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Local" id="260d5a9d-3be1-4d2a-a164-794585e4c982">
+    <Description>These are default test settings for a local test run.</Description>
+    <Deployment enabled="false" runDeploymentRoot="userc_ALPHA 2016-05-04 20_05_20">
+      <DeploymentItem filename="C:\Users\userc\Dropbox\Alpha c#\XMLDataBase\XMLDataBase\bin\Debug\XMLDataBase.dll" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2016-05-04T20:05:20.2661613+12:00" queuing="2016-05-04T20:05:22.8893113+12:00" start="2016-05-04T20:05:23.0993233+12:00" finish="2016-05-04T20:05:39.3742542+12:00" />
+  <ResultSummary outcome="Error">
+    <Counters total="1" executed="1" error="0" failed="0" timeout="0" aborted="1" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" passed="0" completed="0" inProgress="0" pending="0" />
+    <RunInfos>
+      <RunInfo computerName="ALPHA" outcome="Error" timestamp="2016-05-04T20:05:39.3732541+12:00">
+        <Text>Test host process exited unexpectedly.</Text>
+      </RunInfo>
+    </RunInfos>
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="TestMethod1" storage="c:\users\userc\dropbox\alpha c#\xmldatabase\xmldatabasetest\bin\debug\xmldatabasetest.dll" id="9c654c25-d64f-7a2e-225a-fce8c74a4d4f">
+      <Execution id="bad8099b-b9e0-45c4-8142-a48198fcb360" />
+      <TestMethod codeBase="C:/Users/userc/Dropbox/Alpha c#/XMLDataBase/XMLDataBaseTest/bin/Debug/XMLDataBaseTest.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="XMLDataBaseTest.UnitTest1, XMLDataBaseTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="TestMethod1" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="9c654c25-d64f-7a2e-225a-fce8c74a4d4f" executionId="bad8099b-b9e0-45c4-8142-a48198fcb360" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="bad8099b-b9e0-45c4-8142-a48198fcb360" testId="9c654c25-d64f-7a2e-225a-fce8c74a4d4f" testName="TestMethod1" computerName="ALPHA" duration="00:00:16.0489179" startTime="2016-05-04T20:05:23.3253363+12:00" endTime="2016-05-04T20:05:39.3742542+12:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Aborted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="bad8099b-b9e0-45c4-8142-a48198fcb360">
+    </UnitTestResult>
+  </Results>
+</TestRun>

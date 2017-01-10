@@ -1,0 +1,15 @@
+C:\Users\a-justin\Documents\XMLDataBase\xmldatabase\bin\Debug\XMLDataBase.dll
+C:\Users\a-justin\Documents\XMLDataBase\xmldatabase\bin\Debug\XMLDataBase.pdb
+C:\Users\a-justin\Documents\XMLDataBase\xmldatabase\obj\Debug\XMLDataBase.dll
+C:\Users\a-justin\Documents\XMLDataBase\xmldatabase\obj\Debug\XMLDataBase.pdb
+C:\Users\a-justin\Documents\XMLDataBase\xmldatabase\obj\Debug\XMLDataBase.csprojResolveAssemblyReference.cache
+C:\Userbackup\a-justin\Documents\XMLDataBase\xmldatabase\bin\Debug\XMLDataBase.dll
+C:\Userbackup\a-justin\Documents\XMLDataBase\xmldatabase\bin\Debug\XMLDataBase.pdb
+C:\Userbackup\a-justin\Documents\XMLDataBase\xmldatabase\obj\Debug\XMLDataBase.csprojResolveAssemblyReference.cache
+C:\Userbackup\a-justin\Documents\XMLDataBase\xmldatabase\obj\Debug\XMLDataBase.dll
+C:\Userbackup\a-justin\Documents\XMLDataBase\xmldatabase\obj\Debug\XMLDataBase.pdb
+C:\Users\userc\Dropbox\Alpha c#\XMLDataBase\xmldatabase\bin\Debug\XMLDataBase.dll
+C:\Users\userc\Dropbox\Alpha c#\XMLDataBase\xmldatabase\bin\Debug\XMLDataBase.pdb
+C:\Users\userc\Dropbox\Alpha c#\XMLDataBase\xmldatabase\obj\Debug\XMLDataBase.csprojResolveAssemblyReference.cache
+C:\Users\userc\Dropbox\Alpha c#\XMLDataBase\xmldatabase\obj\Debug\XMLDataBase.dll
+C:\Users\userc\Dropbox\Alpha c#\XMLDataBase\xmldatabase\obj\Debug\XMLDataBase.pdb

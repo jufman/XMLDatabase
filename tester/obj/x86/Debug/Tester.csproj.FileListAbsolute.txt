@@ -1,0 +1,10 @@
+C:\Users\userc\Dropbox\Alpha c#\XMLDataBase\Tester\obj\x86\Debug\Tester.Form1.resources
+C:\Users\userc\Dropbox\Alpha c#\XMLDataBase\Tester\obj\x86\Debug\Tester.Properties.Resources.resources
+C:\Users\userc\Dropbox\Alpha c#\XMLDataBase\Tester\obj\x86\Debug\Tester.csproj.GenerateResource.Cache
+C:\Users\userc\Dropbox\Alpha c#\XMLDataBase\Tester\bin\Debug\Tester.exe
+C:\Users\userc\Dropbox\Alpha c#\XMLDataBase\Tester\bin\Debug\Tester.pdb
+C:\Users\userc\Dropbox\Alpha c#\XMLDataBase\Tester\bin\Debug\XMLDataBase.dll
+C:\Users\userc\Dropbox\Alpha c#\XMLDataBase\Tester\bin\Debug\XMLDataBase.pdb
+C:\Users\userc\Dropbox\Alpha c#\XMLDataBase\Tester\obj\x86\Debug\Tester.csprojResolveAssemblyReference.cache
+C:\Users\userc\Dropbox\Alpha c#\XMLDataBase\Tester\obj\x86\Debug\Tester.exe
+C:\Users\userc\Dropbox\Alpha c#\XMLDataBase\Tester\obj\x86\Debug\Tester.pdb
