@@ -66,7 +66,13 @@ namespace XMLDataBase
 
             int id = 1;
 
-            XmlNodeList nodes = Document.SelectNodes(ParentNode + DataSet.DataSet + "/" + DefaultItemName);
+            string SearchClause = "";
+            if (DataSet.SearchClause != string.Empty)
+            {
+                SearchClause = "[" + DataSet.SearchClause + "]";
+            }
+
+            XmlNodeList nodes = Document.SelectNodes(ParentNode + DataSet.DataSet + "/" + DefaultItemName + SearchClause);
             foreach (XmlNode node in nodes)
             {
                 OBJS.Data FoundData = new OBJS.Data();

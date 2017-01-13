@@ -13,3 +13,8 @@ C:\Users\userc\Dropbox\Alpha c#\XMLDataBase\xmldatabase\bin\Debug\XMLDataBase.pd
 C:\Users\userc\Dropbox\Alpha c#\XMLDataBase\xmldatabase\obj\Debug\XMLDataBase.csprojResolveAssemblyReference.cache
 C:\Users\userc\Dropbox\Alpha c#\XMLDataBase\xmldatabase\obj\Debug\XMLDataBase.dll
 C:\Users\userc\Dropbox\Alpha c#\XMLDataBase\xmldatabase\obj\Debug\XMLDataBase.pdb
+C:\Users\a-justin\Source\Repos\XMLDatabase\xmldatabase\bin\Debug\XMLDataBase.dll
+C:\Users\a-justin\Source\Repos\XMLDatabase\xmldatabase\bin\Debug\XMLDataBase.pdb
+C:\Users\a-justin\Source\Repos\XMLDatabase\xmldatabase\obj\Debug\XMLDataBase.dll
+C:\Users\a-justin\Source\Repos\XMLDatabase\xmldatabase\obj\Debug\XMLDataBase.pdb
+C:\Users\a-justin\Source\Repos\XMLDatabase\xmldatabase\obj\Debug\XMLDataBase.csprojResolveAssemblyReference.cache
