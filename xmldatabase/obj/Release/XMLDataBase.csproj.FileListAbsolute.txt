@@ -1,0 +1,5 @@
+C:\Users\a-justin\Source\Repos\XMLDatabase\xmldatabase\bin\Release\XMLDataBase.dll
+C:\Users\a-justin\Source\Repos\XMLDatabase\xmldatabase\bin\Release\XMLDataBase.pdb
+C:\Users\a-justin\Source\Repos\XMLDatabase\xmldatabase\obj\Release\XMLDataBase.dll
+C:\Users\a-justin\Source\Repos\XMLDatabase\xmldatabase\obj\Release\XMLDataBase.pdb
+C:\Users\a-justin\Source\Repos\XMLDatabase\xmldatabase\obj\Release\XMLDataBase.csprojResolveAssemblyReference.cache

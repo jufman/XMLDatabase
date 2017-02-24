@@ -52,6 +52,7 @@ namespace XMLDataBase
         {
             if (!DoesDataStoreFileExist())
             {
+                CreateDataStore();
                 return new List<OBJS.Data>();
             }
 
@@ -94,7 +95,7 @@ namespace XMLDataBase
 
                 foreach (OBJS.Data DataValue in DataSet.GetNestedData())
                 {
-                    List<OBJS.Data> NestedData = HandleLoadData(DataValue, node, "", FoundData.Location);
+                    List<OBJS.Data> NestedData = HandleLoadData(DataValue, node, FoundData.Location + "/", FoundData.Location);
                     FoundData.AddData(NestedData);
                 }
 
