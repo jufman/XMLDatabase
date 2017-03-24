@@ -61,6 +61,59 @@ namespace XMLDataBase
             return HandleLoadData(DataSet, Document);
         }
 
+        public OBJS.Data LoadSetting(OBJS.Data DataSet)
+        {
+            if (!DoesDataStoreFileExist())
+            {
+                CreateDataStore();
+                return new OBJS.Data();
+            }
+
+            XmlDocument Document = GetXMLDocument();
+
+            return HandleLoadSettings(DataSet, Document);
+        }
+
+        private OBJS.Data HandleLoadSettings(OBJS.Data DataSet, XmlNode Document, string ParentNode = "//DataStore/", string Location = "//DataStore")
+        {
+            string SearchClause = "";
+            if (DataSet.SearchClause != string.Empty)
+            {
+                SearchClause = "[" + DataSet.SearchClause + "]";
+            }
+
+            XmlNode node = Document.SelectSingleNode(ParentNode + DataSet.DataSet  + SearchClause);
+
+            OBJS.Data FoundData = new OBJS.Data();
+
+            FoundData.DataSet = DataSet.DataSet;
+            FoundData.Location = Location + "/" + DataSet.DataSet;
+
+            if (node == null)
+            {
+                return FoundData;
+            }
+
+            foreach (OBJS.Data.DataValue DataValue in DataSet.GetDataValues())
+            {
+                string value = "";
+
+                if (node.SelectSingleNode(DataValue.Name) != null)
+                {
+                    value = node.SelectSingleNode(DataValue.Name).InnerText;
+                }
+                FoundData.AddData(DataValue.Name, value);
+            }
+
+            foreach (OBJS.Data DataValue in DataSet.GetNestedData())
+            {
+                List<OBJS.Data> NestedData = HandleLoadData(DataValue, node, FoundData.Location + "/", FoundData.Location);
+                FoundData.AddData(NestedData);
+            }
+
+            return FoundData;
+        }
+
         private List<OBJS.Data> HandleLoadData(OBJS.Data DataSet, XmlNode Document, string ParentNode = "//DataStore/", string Location = "//DataStore")
         {
             List<OBJS.Data> Data = new List<OBJS.Data>();

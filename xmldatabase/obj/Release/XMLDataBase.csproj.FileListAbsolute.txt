@@ -1,7 +1,3 @@
-C:\Users\a-justin\Source\Repos\XMLDatabase\xmldatabase\bin\Release\XMLDataBase.dll
-C:\Users\a-justin\Source\Repos\XMLDatabase\xmldatabase\bin\Release\XMLDataBase.pdb
-C:\Users\a-justin\Source\Repos\XMLDatabase\xmldatabase\obj\Release\XMLDataBase.dll
-C:\Users\a-justin\Source\Repos\XMLDatabase\xmldatabase\obj\Release\XMLDataBase.pdb
 C:\Users\a-justin\Source\Repos\XMLDatabase\xmldatabase\bin\Release\roslyn\csc.exe
 C:\Users\a-justin\Source\Repos\XMLDatabase\xmldatabase\bin\Release\roslyn\csc.exe.config
 C:\Users\a-justin\Source\Repos\XMLDatabase\xmldatabase\bin\Release\roslyn\csc.rsp
@@ -28,4 +24,7 @@ C:\Users\a-justin\Source\Repos\XMLDatabase\xmldatabase\bin\Release\roslyn\vbc.ex
 C:\Users\a-justin\Source\Repos\XMLDatabase\xmldatabase\bin\Release\roslyn\vbc.rsp
 C:\Users\a-justin\Source\Repos\XMLDatabase\xmldatabase\bin\Release\roslyn\VBCSCompiler.exe
 C:\Users\a-justin\Source\Repos\XMLDatabase\xmldatabase\bin\Release\roslyn\VBCSCompiler.exe.config
-C:\Users\a-justin\Source\Repos\XMLDatabase\xmldatabase\obj\Release\XMLDataBase.csprojResolveAssemblyReference.cache
+C:\Users\a-justin\Source\Repos\XMLDatabase\xmldatabase\bin\Release\XMLDataBase.dll
+C:\Users\a-justin\Source\Repos\XMLDatabase\xmldatabase\bin\Release\XMLDataBase.pdb
+C:\Users\a-justin\Source\Repos\XMLDatabase\xmldatabase\obj\Release\XMLDataBase.dll
+C:\Users\a-justin\Source\Repos\XMLDatabase\xmldatabase\obj\Release\XMLDataBase.pdb
