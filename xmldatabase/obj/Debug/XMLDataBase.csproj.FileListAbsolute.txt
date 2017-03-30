@@ -44,3 +44,7 @@ C:\Users\a-justin\Source\Repos\XMLDatabase\xmldatabase\bin\Debug\roslyn\vbc.exe.
 C:\Users\a-justin\Source\Repos\XMLDatabase\xmldatabase\bin\Debug\roslyn\vbc.rsp
 C:\Users\a-justin\Source\Repos\XMLDatabase\xmldatabase\bin\Debug\roslyn\VBCSCompiler.exe
 C:\Users\a-justin\Source\Repos\XMLDatabase\xmldatabase\bin\Debug\roslyn\VBCSCompiler.exe.config
+C:\Users\userc\Dropbox\Alpha c#\Monotring Screen\MonitoringScreenV2.1 Plugins\XMLDatabase\xmldatabase\bin\Debug\XMLDataBase.dll
+C:\Users\userc\Dropbox\Alpha c#\Monotring Screen\MonitoringScreenV2.1 Plugins\XMLDatabase\xmldatabase\bin\Debug\XMLDataBase.pdb
+C:\Users\userc\Dropbox\Alpha c#\Monotring Screen\MonitoringScreenV2.1 Plugins\XMLDatabase\xmldatabase\obj\Debug\XMLDataBase.dll
+C:\Users\userc\Dropbox\Alpha c#\Monotring Screen\MonitoringScreenV2.1 Plugins\XMLDatabase\xmldatabase\obj\Debug\XMLDataBase.pdb

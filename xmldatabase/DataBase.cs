@@ -58,7 +58,16 @@ namespace XMLDataBase
 
             XmlDocument Document = GetXMLDocument();
 
-            return HandleLoadData(DataSet, Document);
+            if (DataSet.Location != null)
+            {
+                string ParrentNode = DataSet.Location + "/";
+
+                return HandleLoadData(DataSet, Document, ParrentNode, DataSet.Location);
+            }
+            else
+            {
+                return HandleLoadData(DataSet, Document);
+            }
         }
 
         public OBJS.Data LoadSetting(OBJS.Data DataSet)

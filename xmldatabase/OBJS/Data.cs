@@ -9,7 +9,7 @@ namespace XMLDataBase.OBJS
 
         private string dataSet;
         private int iD;
-        private string location;
+        private string location = null;
         private string searchClause = string.Empty;
 
         public string Location
