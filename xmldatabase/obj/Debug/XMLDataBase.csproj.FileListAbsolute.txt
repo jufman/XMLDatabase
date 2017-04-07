@@ -48,3 +48,4 @@ C:\Users\userc\Dropbox\Alpha c#\Monotring Screen\MonitoringScreenV2.1 Plugins\XM
 C:\Users\userc\Dropbox\Alpha c#\Monotring Screen\MonitoringScreenV2.1 Plugins\XMLDatabase\xmldatabase\bin\Debug\XMLDataBase.pdb
 C:\Users\userc\Dropbox\Alpha c#\Monotring Screen\MonitoringScreenV2.1 Plugins\XMLDatabase\xmldatabase\obj\Debug\XMLDataBase.dll
 C:\Users\userc\Dropbox\Alpha c#\Monotring Screen\MonitoringScreenV2.1 Plugins\XMLDatabase\xmldatabase\obj\Debug\XMLDataBase.pdb
+C:\Users\userc\Dropbox\Alpha c#\Monotring Screen\MonitoringScreenV2.1 Plugins\XMLDatabase\xmldatabase\obj\Debug\XMLDataBase.csprojResolveAssemblyReference.cache
