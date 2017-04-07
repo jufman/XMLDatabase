@@ -9,7 +9,8 @@ namespace XMLDataBase.OBJS
 
         private string dataSet;
         private int iD;
-        private string location;
+        private string location = null;
+        private string searchClause = string.Empty;
 
         public string Location
         {
@@ -27,6 +28,19 @@ namespace XMLDataBase.OBJS
         {
             get { return dataSet; }
             set { dataSet = value; }
+        }
+
+        public string SearchClause
+        {
+            get
+            {
+                return searchClause;
+            }
+
+            set
+            {
+                searchClause = value;
+            }
         }
 
         public void AddData(string Name, string Value)

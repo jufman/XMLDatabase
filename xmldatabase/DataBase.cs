@@ -52,12 +52,75 @@ namespace XMLDataBase
         {
             if (!DoesDataStoreFileExist())
             {
+                CreateDataStore();
                 return new List<OBJS.Data>();
             }
 
             XmlDocument Document = GetXMLDocument();
 
-            return HandleLoadData(DataSet, Document);
+            if (DataSet.Location != null)
+            {
+                string ParrentNode = DataSet.Location + "/";
+
+                return HandleLoadData(DataSet, Document, ParrentNode, DataSet.Location);
+            }
+            else
+            {
+                return HandleLoadData(DataSet, Document);
+            }
+        }
+
+        public OBJS.Data LoadSetting(OBJS.Data DataSet)
+        {
+            if (!DoesDataStoreFileExist())
+            {
+                CreateDataStore();
+                return new OBJS.Data();
+            }
+
+            XmlDocument Document = GetXMLDocument();
+
+            return HandleLoadSettings(DataSet, Document);
+        }
+
+        private OBJS.Data HandleLoadSettings(OBJS.Data DataSet, XmlNode Document, string ParentNode = "//DataStore/", string Location = "//DataStore")
+        {
+            string SearchClause = "";
+            if (DataSet.SearchClause != string.Empty)
+            {
+                SearchClause = "[" + DataSet.SearchClause + "]";
+            }
+
+            XmlNode node = Document.SelectSingleNode(ParentNode + DataSet.DataSet  + SearchClause);
+
+            OBJS.Data FoundData = new OBJS.Data();
+
+            FoundData.DataSet = DataSet.DataSet;
+            FoundData.Location = Location + "/" + DataSet.DataSet;
+
+            if (node == null)
+            {
+                return FoundData;
+            }
+
+            foreach (OBJS.Data.DataValue DataValue in DataSet.GetDataValues())
+            {
+                string value = "";
+
+                if (node.SelectSingleNode(DataValue.Name) != null)
+                {
+                    value = node.SelectSingleNode(DataValue.Name).InnerText;
+                }
+                FoundData.AddData(DataValue.Name, value);
+            }
+
+            foreach (OBJS.Data DataValue in DataSet.GetNestedData())
+            {
+                List<OBJS.Data> NestedData = HandleLoadData(DataValue, node, FoundData.Location + "/", FoundData.Location);
+                FoundData.AddData(NestedData);
+            }
+
+            return FoundData;
         }
 
         private List<OBJS.Data> HandleLoadData(OBJS.Data DataSet, XmlNode Document, string ParentNode = "//DataStore/", string Location = "//DataStore")
@@ -66,7 +129,13 @@ namespace XMLDataBase
 
             int id = 1;
 
-            XmlNodeList nodes = Document.SelectNodes(ParentNode + DataSet.DataSet + "/" + DefaultItemName);
+            string SearchClause = "";
+            if (DataSet.SearchClause != string.Empty)
+            {
+                SearchClause = "[" + DataSet.SearchClause + "]";
+            }
+
+            XmlNodeList nodes = Document.SelectNodes(ParentNode + DataSet.DataSet + "/" + DefaultItemName + SearchClause);
             foreach (XmlNode node in nodes)
             {
                 OBJS.Data FoundData = new OBJS.Data();
@@ -88,7 +157,7 @@ namespace XMLDataBase
 
                 foreach (OBJS.Data DataValue in DataSet.GetNestedData())
                 {
-                    List<OBJS.Data> NestedData = HandleLoadData(DataValue, node, "", FoundData.Location);
+                    List<OBJS.Data> NestedData = HandleLoadData(DataValue, node, FoundData.Location + "/", FoundData.Location);
                     FoundData.AddData(NestedData);
                 }
 
