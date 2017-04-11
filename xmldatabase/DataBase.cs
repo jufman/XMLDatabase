@@ -383,6 +383,11 @@ namespace XMLDataBase
         {
             XmlDocument Document = new XmlDocument();
 
+            if (!DoesDataStoreFileExist())
+            {
+                CreateDataStore();
+            }
+
             if (Encryption)
             {
                 Encryption EncryptionLogic = new Encryption();
