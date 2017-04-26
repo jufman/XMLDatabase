@@ -11,6 +11,7 @@ namespace XMLDataBase.OBJS
         private int iD;
         private string location = null;
         private string searchClause = string.Empty;
+        private string defaultItemName = "Item";
 
         public string Location
         {
@@ -40,6 +41,19 @@ namespace XMLDataBase.OBJS
             set
             {
                 searchClause = value;
+            }
+        }
+
+        public string DefaultItemName
+        {
+            get
+            {
+                return defaultItemName;
+            }
+
+            set
+            {
+                defaultItemName = value;
             }
         }
 
@@ -111,10 +125,54 @@ namespace XMLDataBase.OBJS
             return Value;
         }
 
+        public List<DataValue> GetAllNodes(string Name)
+        {
+            List<DataValue> DataValue = new List<Data.DataValue>();
+            foreach (DataValue DataSet in DataValues)
+            {
+                if (DataSet.Name == Name)
+                {
+                    DataValue.Add(DataSet);
+                }
+            }
+            return DataValue;
+        }
+
+        public List<DataValue> GetAttributes(string Name)
+        {
+            List<DataValue> Attributes = new List<DataValue>();
+
+            foreach (DataValue DataSet in DataValues)
+            {
+                if (DataSet.Name == Name)
+                {
+                    Attributes = DataSet.Attributes;
+                }
+            }
+            return Attributes;
+        }
+
         public class DataValue
         {
+            private List<DataValue> attributes = new List<DataValue>();
+
+            public List<DataValue> Attributes
+            {
+                get
+                {
+                    return attributes;
+                }
+
+                set
+                {
+                    attributes = value;
+                }
+            }
+
             public string Name { get; set; }
             public string Value { get; set; }
+
+            
         }
     }
 }
