@@ -12,7 +12,6 @@ namespace XMLDataBase
     {
 
         private string DataStoreLocation;
-        private string DefaultItemName = "Item";
 
         private string Key;
 
@@ -105,13 +104,29 @@ namespace XMLDataBase
 
             foreach (OBJS.Data.DataValue DataValue in DataSet.GetDataValues())
             {
-                string value = "";
+                string value = string.Empty;
+                XmlNode DataNode = node.SelectSingleNode(DataValue.Name);
 
-                if (node.SelectSingleNode(DataValue.Name) != null)
+                OBJS.Data.DataValue DataValues = new OBJS.Data.DataValue();
+
+                if (DataNode != null)
                 {
-                    value = node.SelectSingleNode(DataValue.Name).InnerText;
+                    value = DataNode.InnerText;
+                    foreach (XmlAttribute XmlAttribute in DataNode.Attributes)
+                    {
+                        OBJS.Data.DataValue Attribute = new OBJS.Data.DataValue();
+
+                        Attribute.Name = XmlAttribute.Name;
+                        Attribute.Value = XmlAttribute.Value;
+
+                        DataValues.Attributes.Add(Attribute);
+                    }
                 }
-                FoundData.AddData(DataValue.Name, value);
+
+                DataValues.Value = value;
+                DataValues.Name = DataValue.Name;
+
+                FoundData.GetDataValues().Add(DataValues);
             }
 
             foreach (OBJS.Data DataValue in DataSet.GetNestedData())
@@ -135,24 +150,43 @@ namespace XMLDataBase
                 SearchClause = "[" + DataSet.SearchClause + "]";
             }
 
-            XmlNodeList nodes = Document.SelectNodes(ParentNode + DataSet.DataSet + "/" + DefaultItemName + SearchClause);
+            XmlNodeList nodes = Document.SelectNodes(ParentNode + DataSet.DataSet + "/" + DataSet.DefaultItemName + SearchClause);
             foreach (XmlNode node in nodes)
             {
                 OBJS.Data FoundData = new OBJS.Data();
 
                 FoundData.DataSet = DataSet.DataSet;
                 FoundData.ID = id;
-                FoundData.Location = Location + "/" + DataSet.DataSet + "/" +DefaultItemName +"["+ id+"]";
+                FoundData.Location = Location + "/" + DataSet.DataSet + "/" + DataSet.DefaultItemName + "["+ id+"]";
 
                 foreach (OBJS.Data.DataValue DataValue in DataSet.GetDataValues())
                 {
-                    string value = "";
+                    string value = string.Empty;
+                    XmlNodeList DataNodes = node.SelectNodes(DataValue.Name);
 
-                    if (node.SelectSingleNode(DataValue.Name) != null)
+                    foreach (XmlNode DataNode in DataNodes)
                     {
-                        value = node.SelectSingleNode(DataValue.Name).InnerText;
+                        OBJS.Data.DataValue DataValues = new OBJS.Data.DataValue();
+
+                        if (DataNode != null)
+                        {
+                            value = DataNode.InnerText;
+                            foreach (XmlAttribute XmlAttribute in DataNode.Attributes)
+                            {
+                                OBJS.Data.DataValue Attribute = new OBJS.Data.DataValue();
+
+                                Attribute.Name = XmlAttribute.Name;
+                                Attribute.Value = XmlAttribute.Value;
+
+                                DataValues.Attributes.Add(Attribute);
+                            }
+                        }
+
+                        DataValues.Value = value;
+                        DataValues.Name = DataValue.Name;
+
+                        FoundData.GetDataValues().Add(DataValues);
                     }
-                    FoundData.AddData(DataValue.Name, value);
                 }
 
                 foreach (OBJS.Data DataValue in DataSet.GetNestedData())
@@ -200,7 +234,7 @@ namespace XMLDataBase
 
         private bool AppendNode(OBJS.Data Data, XmlNode ParentRoot, XmlDocument Document)
         {
-            XmlNode NewItem = Document.CreateNode(XmlNodeType.Element, DefaultItemName, null);
+            XmlNode NewItem = Document.CreateNode(XmlNodeType.Element, Data.DefaultItemName, null);
 
             foreach (OBJS.Data.DataValue DataValue in Data.GetDataValues())
             {
