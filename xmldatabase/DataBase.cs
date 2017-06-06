@@ -239,7 +239,20 @@ namespace XMLDataBase
             foreach (OBJS.Data.DataValue DataValue in Data.GetDataValues())
             {
                 XmlNode ItemValue = Document.CreateNode(XmlNodeType.Element, DataValue.Name, null);
-                ItemValue.InnerText = DataValue.Value;
+                if (DataValue.Value != string.Empty)
+                {
+                    ItemValue.InnerText = DataValue.Value;
+                }
+                
+                if (DataValue.Attributes.Count != 0)
+                {
+                    foreach (OBJS.Data.DataValue Attributes in DataValue.Attributes)
+                    {
+                        XmlAttribute typeAttr = Document.CreateAttribute(Attributes.Name);
+                        typeAttr.InnerText = Attributes.Value;
+                        ItemValue.Attributes.Append(typeAttr);
+                    }
+                }
                 NewItem.AppendChild(ItemValue);
             }
 
@@ -335,6 +348,25 @@ namespace XMLDataBase
             XmlDocument Document = GetXMLDocument();
 
             XmlNode Node = Document.SelectSingleNode(Data.Location);
+
+            if (Node != null)
+            {
+                DeleteNode(Node);
+            }
+            SaveXMLDocument(Document);
+        }
+
+        public void DeleteDataFromID(OBJS.Data Data)
+        {
+            if (!DoesDataStoreFileExist())
+            {
+                CreateDataStore();
+                return;
+            }
+
+            XmlDocument Document = GetXMLDocument();
+
+            XmlNode Node = Document.SelectSingleNode("//DataStore/" + Data.DataSet + "/" + Data.DefaultItemName + "["+Data.ID+"]");
 
             if (Node != null)
             {

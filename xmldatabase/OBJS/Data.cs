@@ -65,6 +65,11 @@ namespace XMLDataBase.OBJS
             DataValues.Add(DS);
         }
 
+        public void AddData(Data.DataValue DataValue)
+        {
+            this.DataValues.Add(DataValue);
+        }
+
         public void AddData(Data NestedData)
         {
             this.NestedData.Add(NestedData);
