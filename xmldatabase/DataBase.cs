@@ -69,6 +69,11 @@ namespace XMLDataBase
             }
         }
 
+        public List<T> LoadDataSet<T>(string DataSet, string DefaultItemName = "Item")
+        {
+            return ObjectLogic.GetItems<T>(DataSet, DefaultItemName, this);
+        }
+
         public OBJS.Data LoadSetting(OBJS.Data DataSet)
         {
             if (!DoesDataStoreFileExist())
@@ -90,12 +95,14 @@ namespace XMLDataBase
                 SearchClause = "[" + DataSet.SearchClause + "]";
             }
 
-            XmlNode node = Document.SelectSingleNode(ParentNode + DataSet.DataSet  + SearchClause);
-
             OBJS.Data FoundData = new OBJS.Data();
+
+            XmlNode node = Document.SelectSingleNode(ParentNode + DataSet.DataSet + SearchClause);
+
 
             FoundData.DataSet = DataSet.DataSet;
             FoundData.Location = Location + "/" + DataSet.DataSet;
+            FoundData.IsSettingsItem = true;
 
             if (node == null)
             {
@@ -105,34 +112,44 @@ namespace XMLDataBase
             foreach (OBJS.Data.DataValue DataValue in DataSet.GetDataValues())
             {
                 string value = string.Empty;
-                XmlNode DataNode = node.SelectSingleNode(DataValue.Name);
-
-                OBJS.Data.DataValue DataValues = new OBJS.Data.DataValue();
-
-                if (DataNode != null)
+                XmlNodeList DataNodes = node.SelectNodes(DataValue.Name);
+                foreach (XmlNode DataNode in DataNodes)
                 {
-                    value = DataNode.InnerText;
-                    foreach (XmlAttribute XmlAttribute in DataNode.Attributes)
+                    OBJS.Data.DataValue DataValues = new OBJS.Data.DataValue();
+
+                    if (DataNode != null)
                     {
-                        OBJS.Data.DataValue Attribute = new OBJS.Data.DataValue();
+                        value = DataNode.InnerText;
+                        foreach (XmlAttribute XmlAttribute in DataNode.Attributes)
+                        {
+                            OBJS.Data.DataValue Attribute = new OBJS.Data.DataValue();
 
-                        Attribute.Name = XmlAttribute.Name;
-                        Attribute.Value = XmlAttribute.Value;
+                            Attribute.Name = XmlAttribute.Name;
+                            Attribute.Value = XmlAttribute.Value;
 
-                        DataValues.Attributes.Add(Attribute);
+                            DataValues.Attributes.Add(Attribute);
+                        }
                     }
+
+                    DataValues.Value = value;
+                    DataValues.Name = DataValue.Name;
+
+                    FoundData.GetDataValues().Add(DataValues);
                 }
-
-                DataValues.Value = value;
-                DataValues.Name = DataValue.Name;
-
-                FoundData.GetDataValues().Add(DataValues);
             }
 
             foreach (OBJS.Data DataValue in DataSet.GetNestedData())
             {
-                List<OBJS.Data> NestedData = HandleLoadData(DataValue, node, FoundData.Location + "/", FoundData.Location);
-                FoundData.AddData(NestedData);
+                if (DataValue.IsSettingsItem)
+                {
+                    OBJS.Data NestedData = HandleLoadSettings(DataValue, node, FoundData.Location + "/", FoundData.Location);
+                    FoundData.AddData(NestedData);
+                }
+                else
+                {
+                    List<OBJS.Data> NestedData = HandleLoadData(DataValue, node, FoundData.Location + "/", FoundData.Location);
+                    FoundData.AddData(NestedData);
+                }
             }
 
             return FoundData;
@@ -191,8 +208,16 @@ namespace XMLDataBase
 
                 foreach (OBJS.Data DataValue in DataSet.GetNestedData())
                 {
-                    List<OBJS.Data> NestedData = HandleLoadData(DataValue, node, FoundData.Location + "/", FoundData.Location);
-                    FoundData.AddData(NestedData);
+                    if (DataValue.IsSettingsItem)
+                    {
+                        OBJS.Data NestedData = HandleLoadSettings(DataValue, node, FoundData.Location + "/", FoundData.Location);
+                        FoundData.AddData(NestedData);
+                    }
+                    else
+                    {
+                        List<OBJS.Data> NestedData = HandleLoadData(DataValue, node, FoundData.Location + "/", FoundData.Location);
+                        FoundData.AddData(NestedData);
+                    }
                 }
 
                 Data.Add(FoundData);

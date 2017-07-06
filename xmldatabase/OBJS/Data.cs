@@ -12,6 +12,7 @@ namespace XMLDataBase.OBJS
         private string location = null;
         private string searchClause = string.Empty;
         private string defaultItemName = "Item";
+        public bool IsSettingsItem { get; set; } = false;
 
         public string Location
         {
@@ -115,6 +116,19 @@ namespace XMLDataBase.OBJS
             }
 
             return NestedDataSet;
+        }
+
+        public Data GetSettingsNestedData(string DataSet)
+        {
+            foreach (Data data in NestedData)
+            {
+                if (data.DataSet == DataSet && data.IsSettingsItem)
+                {
+                    return data;
+                }
+            }
+
+            return new Data();
         }
 
         public string GetValue(string Name)
