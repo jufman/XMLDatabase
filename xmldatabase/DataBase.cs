@@ -71,7 +71,22 @@ namespace XMLDataBase
 
         public List<T> LoadDataSet<T>(string DataSet, string DefaultItemName = "Item")
         {
-            return ObjectLogic.GetItems<T>(DataSet, DefaultItemName, this);
+            return GetObjectLogic.GetItems<T>(DataSet, DefaultItemName, this);
+        }
+
+        public void AddNewDataSet<T>(string DataSet,List<T> Items ,string DefaultItemName = "Item")
+        {
+            SetObjectLogic.AddNewObjects<T>(Items, DataSet, DefaultItemName, this);
+        }
+
+        public void UpdateDataSet<T>(string DataSet, List<T> Items, string DefaultItemName = "Item")
+        {
+            SetObjectLogic.UpdateObjects<T>(Items, DataSet, DefaultItemName, this);
+        }
+
+        public void DeleteItems<T>(string DataSet, List<T> Items, string DefaultItemName = "Item")
+        {
+            SetObjectLogic.DeleteDataItems<T>(Items, DataSet, DefaultItemName, this);
         }
 
         public OBJS.Data LoadSetting(OBJS.Data DataSet)
@@ -194,6 +209,7 @@ namespace XMLDataBase
 
                                 Attribute.Name = XmlAttribute.Name;
                                 Attribute.Value = XmlAttribute.Value;
+                                Attribute.Location = Location + "/" + DataSet.DataSet + "/" + DataSet.DefaultItemName + "[" + id + "]/" + DataValue.Name;
 
                                 DataValues.Attributes.Add(Attribute);
                             }
@@ -201,6 +217,7 @@ namespace XMLDataBase
 
                         DataValues.Value = value;
                         DataValues.Name = DataValue.Name;
+                        DataValues.Location = Location + "/" + DataSet.DataSet + "/" + DataSet.DefaultItemName + "[" + id + "]/"+ DataValue.Name;
 
                         FoundData.GetDataValues().Add(DataValues);
                     }
@@ -246,6 +263,25 @@ namespace XMLDataBase
             }
         }
 
+        public void SetData(List<OBJS.Data> Data, XmlDocument Document = null)
+        {
+            if (!DoesDataStoreFileExist())
+            {
+                CreateDataStore();
+            }
+
+            if (Document == null)
+            {
+                Document = GetXMLDocument();
+            }
+
+            Data.ForEach(X => {
+                SetData(X, Document, false);
+            });
+
+            SaveXMLDocument(Document);
+        }
+
         private void HandleSetData(OBJS.Data Data, XmlNode ParentRoot, XmlDocument Document, string ParentNode = "//DataStore")
         {
             XmlNode NewNode = ParentRoot.SelectSingleNode(ParentNode + "/" + Data.DataSet);
@@ -254,7 +290,46 @@ namespace XMLDataBase
                 NewNode = CreateDataSet(ParentNode, Data.DataSet, ParentRoot, Document);
             }
 
-            AppendNode(Data, NewNode, Document);
+            if (Data.IsSettingsItem)
+            {
+                AppendSettingsNode(Data, NewNode, Document);
+            }
+            else
+            {
+                AppendNode(Data, NewNode, Document);
+            }
+        }
+
+        private void AppendSettingsNode(OBJS.Data Data, XmlNode ParentRoot, XmlDocument Document)
+        {
+            foreach (OBJS.Data.DataValue DataValue in Data.GetDataValues())
+            {
+                XmlElement ItemValue = Document.CreateElement(DataValue.Name);
+                if (DataValue.Value == string.Empty || DataValue.Value == null)
+                {
+                    ItemValue.IsEmpty = true;
+                }
+                else
+                {
+                    ItemValue.InnerText = DataValue.Value;
+                }
+
+                if (DataValue.Attributes.Count != 0)
+                {
+                    foreach (OBJS.Data.DataValue Attributes in DataValue.Attributes)
+                    {
+                        XmlAttribute typeAttr = Document.CreateAttribute(Attributes.Name);
+                        typeAttr.InnerText = Attributes.Value;
+                        ItemValue.Attributes.Append(typeAttr);
+                    }
+                }
+                ParentRoot.AppendChild(ItemValue);
+            }
+
+            foreach (OBJS.Data NestedData in Data.GetNestedData())
+            {
+                HandleSetData(NestedData, ParentRoot, Document, "");
+            }
         }
 
         private bool AppendNode(OBJS.Data Data, XmlNode ParentRoot, XmlDocument Document)
@@ -263,12 +338,16 @@ namespace XMLDataBase
 
             foreach (OBJS.Data.DataValue DataValue in Data.GetDataValues())
             {
-                XmlNode ItemValue = Document.CreateNode(XmlNodeType.Element, DataValue.Name, null);
-                if (DataValue.Value != string.Empty)
+                XmlElement ItemValue = Document.CreateElement(DataValue.Name);
+                if (DataValue.Value == string.Empty || DataValue.Value == null)
+                {
+                    ItemValue.IsEmpty = true;
+                }
+                else
                 {
                     ItemValue.InnerText = DataValue.Value;
                 }
-                
+
                 if (DataValue.Attributes.Count != 0)
                 {
                     foreach (OBJS.Data.DataValue Attributes in DataValue.Attributes)
@@ -392,6 +471,25 @@ namespace XMLDataBase
             XmlDocument Document = GetXMLDocument();
 
             XmlNode Node = Document.SelectSingleNode("//DataStore/" + Data.DataSet + "/" + Data.DefaultItemName + "["+Data.ID+"]");
+
+            if (Node != null)
+            {
+                DeleteNode(Node);
+            }
+            SaveXMLDocument(Document);
+        }
+
+        public void DeleteItem(string ItemLocation)
+        {
+            if (!DoesDataStoreFileExist())
+            {
+                CreateDataStore();
+                return;
+            }
+
+            XmlDocument Document = GetXMLDocument();
+
+            XmlNode Node = Document.SelectSingleNode(ItemLocation);
 
             if (Node != null)
             {

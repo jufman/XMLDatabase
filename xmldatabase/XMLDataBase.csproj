@@ -44,10 +44,12 @@
   <ItemGroup>
     <Compile Include="DataBase.cs" />
     <Compile Include="Encryption.cs" />
-    <Compile Include="ObjectLogic.cs" />
+    <Compile Include="GetObjectLogic.cs" />
     <Compile Include="OBJS\Data.cs" />
     <Compile Include="OBJS\XMLDatabaseRetriveItem.cs" />
+    <Compile Include="OBJS\XMLDataDetails.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SetObjectLogic.cs" />
     <Compile Include="Xpath.cs" />
   </ItemGroup>
   <ItemGroup>

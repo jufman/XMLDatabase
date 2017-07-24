@@ -131,6 +131,7 @@ namespace XMLDataBase.OBJS
             return new Data();
         }
 
+
         public string GetValue(string Name)
         {
             string Value = "";
@@ -157,6 +158,8 @@ namespace XMLDataBase.OBJS
             return DataValue;
         }
 
+        
+
         public List<DataValue> GetAttributes(string Name)
         {
             List<DataValue> Attributes = new List<DataValue>();
@@ -169,6 +172,33 @@ namespace XMLDataBase.OBJS
                 }
             }
             return Attributes;
+        }
+
+        public void SetAttribute(string NodeName, string Name, string Value, bool AppendToNode = true)
+        {
+            DataValue DataSet = DataValues.Find(A => A.Name == NodeName);
+
+            if (DataSet != null && AppendToNode)
+            {
+                DataSet.Attributes.Add(new DataValue()
+                {
+                    Name = Name,
+                    Value = Value
+                });
+            }
+            else
+            {
+                DataSet = new DataValue();
+
+                DataSet.Attributes.Add(new DataValue()
+                {
+                    Name = Name,
+                    Value = Value
+                });
+                DataSet.Name = NodeName;
+
+                DataValues.Add(DataSet);
+            }
         }
 
         public class DataValue
@@ -190,8 +220,8 @@ namespace XMLDataBase.OBJS
 
             public string Name { get; set; }
             public string Value { get; set; }
+            public string Location { get; set; }
 
-            
         }
     }
 }

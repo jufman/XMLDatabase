@@ -12,6 +12,10 @@ namespace XMLDataBase.OBJS
         public string ItemName { get; set; } = string.Empty;
         public string NodeName { get; set; } = string.Empty;
         public string AttributeName { get; set; } = string.Empty;
+
+        public string Location { get; set; } = string.Empty;
+        public int ID { get; set; } = -1;
+
     }
 
     public enum Types
@@ -23,6 +27,8 @@ namespace XMLDataBase.OBJS
         MultiProp,
         AttributeFill,
         Attribute,
-        NestedItems
+        NestedItems,
+        NodedLocation,
+        NodeID
     }
 }
