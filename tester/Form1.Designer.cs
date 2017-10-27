@@ -38,6 +38,7 @@
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.button2 = new System.Windows.Forms.Button();
             this.listBox2 = new System.Windows.Forms.ListBox();
+            this.Load = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -130,11 +131,22 @@
             this.listBox2.Size = new System.Drawing.Size(383, 69);
             this.listBox2.TabIndex = 10;
             // 
+            // Load
+            // 
+            this.Load.Location = new System.Drawing.Point(320, 140);
+            this.Load.Name = "Load";
+            this.Load.Size = new System.Drawing.Size(60, 24);
+            this.Load.TabIndex = 11;
+            this.Load.Text = "Load";
+            this.Load.UseVisualStyleBackColor = true;
+            this.Load.Click += new System.EventHandler(this.Load_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(409, 386);
+            this.Controls.Add(this.Load);
             this.Controls.Add(this.listBox2);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.listBox1);
@@ -164,6 +176,7 @@
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ListBox listBox2;
+        private System.Windows.Forms.Button Load;
     }
 }
 

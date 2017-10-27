@@ -28,3 +28,8 @@ C:\Users\a-justin\Source\Repos\XMLDatabase\xmldatabase\bin\Release\XMLDataBase.d
 C:\Users\a-justin\Source\Repos\XMLDatabase\xmldatabase\bin\Release\XMLDataBase.pdb
 C:\Users\a-justin\Source\Repos\XMLDatabase\xmldatabase\obj\Release\XMLDataBase.dll
 C:\Users\a-justin\Source\Repos\XMLDatabase\xmldatabase\obj\Release\XMLDataBase.pdb
+C:\Users\Justin.Campbell\Documents\Git Repos\Monotring Screen 2.1\MonitoringScreenV2.1\MonitoringScreenV2.1 Plugins\XMLDatabase\xmldatabase\bin\Release\XMLDataBase.dll
+C:\Users\Justin.Campbell\Documents\Git Repos\Monotring Screen 2.1\MonitoringScreenV2.1\MonitoringScreenV2.1 Plugins\XMLDatabase\xmldatabase\bin\Release\XMLDataBase.pdb
+C:\Users\Justin.Campbell\Documents\Git Repos\Monotring Screen 2.1\MonitoringScreenV2.1\MonitoringScreenV2.1 Plugins\XMLDatabase\xmldatabase\obj\Release\XMLDataBase.dll
+C:\Users\Justin.Campbell\Documents\Git Repos\Monotring Screen 2.1\MonitoringScreenV2.1\MonitoringScreenV2.1 Plugins\XMLDatabase\xmldatabase\obj\Release\XMLDataBase.pdb
+C:\Users\Justin.Campbell\Documents\Git Repos\Monotring Screen 2.1\MonitoringScreenV2.1\MonitoringScreenV2.1 Plugins\XMLDatabase\xmldatabase\obj\Release\XMLDataBase.csprojResolveAssemblyReference.cache
