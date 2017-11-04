@@ -33,3 +33,8 @@ C:\Users\Justin.Campbell\Documents\Git Repos\Monotring Screen 2.1\MonitoringScre
 C:\Users\Justin.Campbell\Documents\Git Repos\Monotring Screen 2.1\MonitoringScreenV2.1\MonitoringScreenV2.1 Plugins\XMLDatabase\xmldatabase\obj\Release\XMLDataBase.dll
 C:\Users\Justin.Campbell\Documents\Git Repos\Monotring Screen 2.1\MonitoringScreenV2.1\MonitoringScreenV2.1 Plugins\XMLDatabase\xmldatabase\obj\Release\XMLDataBase.pdb
 C:\Users\Justin.Campbell\Documents\Git Repos\Monotring Screen 2.1\MonitoringScreenV2.1\MonitoringScreenV2.1 Plugins\XMLDatabase\xmldatabase\obj\Release\XMLDataBase.csprojResolveAssemblyReference.cache
+C:\Users\Justin.Campbell\Documents\Git Repos\XMLDatabase\xmldatabase\bin\Release\XMLDataBase.dll
+C:\Users\Justin.Campbell\Documents\Git Repos\XMLDatabase\xmldatabase\bin\Release\XMLDataBase.pdb
+C:\Users\Justin.Campbell\Documents\Git Repos\XMLDatabase\xmldatabase\obj\Release\XMLDataBase.csprojResolveAssemblyReference.cache
+C:\Users\Justin.Campbell\Documents\Git Repos\XMLDatabase\xmldatabase\obj\Release\XMLDataBase.dll
+C:\Users\Justin.Campbell\Documents\Git Repos\XMLDatabase\xmldatabase\obj\Release\XMLDataBase.pdb
