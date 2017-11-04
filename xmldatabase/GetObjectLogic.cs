@@ -242,6 +242,8 @@ namespace XMLDataBase
             {
                 case "Int32":
                     return Int32.Parse(Value);
+                case "Single":
+                    return float.Parse(Value);
                 case "Int64":
                     return Int64.Parse(Value);
                 case "Boolean":
