@@ -9,18 +9,18 @@ namespace XMLDataBase
     public static class GetObjectLogic
     {
 
-        public static List<T> GetItems<T>(string DataSet, string DefaultItemName, XMLDataBase.DataBase DataBase)
+        public static List<T> GetItems<T>(string DataSet, string DefaultItemName, XMLDataBase.DataBase DataBase, object[] args)
         {
             List<T> Items = new List<T>();
 
             OBJS.Data DataSetObject = GetDataSet(DataSet, DefaultItemName, typeof(T));
 
-            Items = BuildObjects<T>(DataSetObject, DataBase);
+            Items = BuildObjects<T>(DataSetObject, DataBase, args);
 
             return Items;
         }
 
-        private static List<T> BuildObjects<T>(OBJS.Data DataSetObject, XMLDataBase.DataBase DataBase)
+        private static List<T> BuildObjects<T>(OBJS.Data DataSetObject, XMLDataBase.DataBase DataBase, object[] args)
         {
             List<T> Items = new List<T>();
             try 
@@ -29,7 +29,7 @@ namespace XMLDataBase
 
                 foreach (OBJS.Data Data in DataItems)
                 {
-                    Items.Add((T)GetItem(Data, typeof(T)));
+                    Items.Add((T)GetItem(Data, typeof(T), args));
                 }
             }
             catch (Exception e)
@@ -40,9 +40,9 @@ namespace XMLDataBase
             return Items;
         }
 
-        private static object GetItem(OBJS.Data Data, Type NewObject)
+        private static object GetItem(OBJS.Data Data, Type NewObject, object[] args)
         {
-            object Item = GetItemObject(NewObject, Data.GetDataValues());
+            object Item = GetItemObject(NewObject, Data.GetDataValues(), args);
 
             GetXmlDataDetails(Item, NewObject, Data);
 
@@ -88,7 +88,13 @@ namespace XMLDataBase
                     NestedDettingsData = Data.GetSettingsNestedData(NestedProp.Name);
                 }
 
-                object NestedSettingsObject = GetItem(NestedDettingsData, NestedProp.PropertyType);
+                Type ClassType = NestedProp.PropertyType;
+                if (XMLDatabaseRetriveItem.NestedClassType != null)
+                {
+                    ClassType = XMLDatabaseRetriveItem.NestedClassType;
+                }
+
+                object NestedSettingsObject = GetItem(NestedDettingsData, ClassType, null);
                 NestedProp.SetValue(Item, NestedSettingsObject, null);
             }
         }
@@ -110,9 +116,22 @@ namespace XMLDataBase
                     foreach (OBJS.Data DataValues in NestedDettingsData)
                     {
                         Type ListType = NestedProp.PropertyType.GetGenericArguments()[0];
-                        System.Collections.IList IList = (System.Collections.IList)NestedProp.GetValue(Item, null);
+                        if (XMLDatabaseRetriveItem.NestedListClassType != null)
+                        {
+                            ListType = XMLDatabaseRetriveItem.NestedListClassType;
+                        }
 
-                        IList.Add(GetItem(DataValues, ListType));
+                        System.Collections.IList IList = (System.Collections.IList)NestedProp.GetValue(Item, null);
+                        if (IList == null)
+                        {
+                            Type genericListType = typeof(List<>);
+                            Type[] typeArgs = new[] { ListType };
+                            var generic = genericListType.MakeGenericType(typeArgs);
+                            IList = (System.Collections.IList)Activator.CreateInstance(generic);
+                            NestedProp.SetValue(Item, IList, null);
+                        }
+                        object ItemObject = GetItem(DataValues, ListType, null);
+                        IList.Add(ItemObject);
                     }
                 }
                 catch (Exception e)
@@ -178,9 +197,9 @@ namespace XMLDataBase
             }
         }
 
-        public static object GetItemObject(Type ListType, List<OBJS.Data.DataValue> DataValues)
+        public static object GetItemObject(Type ListType, List<OBJS.Data.DataValue> DataValues, object[] args = null)
         {
-            object SubItem = Activator.CreateInstance(ListType);
+            object SubItem = Activator.CreateInstance(ListType, args);
             try
             {
                 List<PropertyInfo> ListProp = GetProprites(OBJS.Types.Prop, ListType);
@@ -338,6 +357,10 @@ namespace XMLDataBase
                 DefaultItemName = (XMLDatabaseRetriveItem.ItemName != string.Empty) ? XMLDatabaseRetriveItem.ItemName : DefaultItemName;
 
                 Type ListType = Prop.PropertyType.GetGenericArguments()[0];
+                if (XMLDatabaseRetriveItem.NestedListClassType != null)
+                {
+                    ListType = XMLDatabaseRetriveItem.NestedListClassType;
+                }
                 OBJS.Data NestedDataSet = GetDataSet(DataSetName, DefaultItemName, ListType);
                 DataSet.SetRetriveValue(NestedDataSet);
             }
@@ -378,6 +401,13 @@ namespace XMLDataBase
             List<PropertyInfo> Props = new List<PropertyInfo>();
 
             List<PropertyInfo> RawPropertyInfos = new List<PropertyInfo>(BaseType.GetProperties());
+
+            RawPropertyInfos.ForEach(RPI =>
+            {
+                var WTF = RPI.GetCustomAttributes(true);
+                var Attrs = RPI.GetCustomAttributes(typeof(OBJS.XMLDatabaseRetriveItem), true);
+                Attrs.ToString();
+            });
 
             List<PropertyInfo> PropertyInfo = new List<PropertyInfo>(RawPropertyInfos.Where(A => A.GetCustomAttributes(typeof(OBJS.XMLDatabaseRetriveItem), true).Where(B => ((OBJS.XMLDatabaseRetriveItem)B).Type == Type).Any()));
 

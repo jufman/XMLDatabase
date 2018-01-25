@@ -16,6 +16,9 @@ namespace XMLDataBase.OBJS
         public string Location { get; set; } = string.Empty;
         public int ID { get; set; } = -1;
 
+        public Type NestedClassType { get; set; } = null;
+        public Type NestedListClassType { get; set; } = null;
+
     }
 
     public enum Types

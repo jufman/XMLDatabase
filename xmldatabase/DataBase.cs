@@ -69,9 +69,9 @@ namespace XMLDataBase
             }
         }
 
-        public List<T> LoadDataSet<T>(string DataSet, string DefaultItemName = "Item")
+        public List<T> LoadDataSet<T>(string DataSet, string DefaultItemName = "Item", params object[] args)
         {
-            return GetObjectLogic.GetItems<T>(DataSet, DefaultItemName, this);
+            return GetObjectLogic.GetItems<T>(DataSet, DefaultItemName, this, args);
         }
 
         public void AddNewDataSet<T>(string DataSet,List<T> Items ,string DefaultItemName = "Item")

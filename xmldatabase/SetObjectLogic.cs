@@ -156,6 +156,10 @@ namespace XMLDataBase
                 DefaultItemName = (XMLDatabaseRetriveItem.ItemName != string.Empty) ? XMLDatabaseRetriveItem.ItemName : DefaultItemName;
 
                 Type ListType = Prop.PropertyType.GetGenericArguments()[0];
+                if (XMLDatabaseRetriveItem.NestedListClassType != null)
+                {
+                    ListType = XMLDatabaseRetriveItem.NestedListClassType;
+                }
 
                 System.Collections.IList IList = (System.Collections.IList)Prop.GetValue(Item, null);
                 if (IList != null)
@@ -181,6 +185,10 @@ namespace XMLDataBase
                 DefaultItemName = (XMLDatabaseRetriveItem.ItemName != string.Empty) ? XMLDatabaseRetriveItem.ItemName : DefaultItemName;
 
                 Type PropType = Prop.PropertyType;
+                if (XMLDatabaseRetriveItem.NestedClassType != null)
+                {
+                    PropType = XMLDatabaseRetriveItem.NestedClassType;
+                }
                 object NestedObject = Prop.GetValue(Item, null);
 
                 if (NestedObject == null)
