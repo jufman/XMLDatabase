@@ -19,6 +19,8 @@ namespace XMLDataBase
 
         private bool Encryption;
 
+        public XmlDocument Document;
+
 
         public DataBase(string DataStoreLocation = "DataStore.xml", bool UseEncryption = false, string EncryptionKey = null)
         {
@@ -26,6 +28,8 @@ namespace XMLDataBase
             Encryption = UseEncryption; 
 
             this.EncryptionKey = EncryptionKey;
+
+            Document = GetXMLDocument();
         }
 
         private void BuildKey()
@@ -55,7 +59,7 @@ namespace XMLDataBase
                 return new List<OBJS.Data>();
             }
 
-            XmlDocument Document = GetXMLDocument();
+            XmlDocument Document = GetXMLDocument(true);
 
             if (DataSet.Location != null)
             {
@@ -74,19 +78,25 @@ namespace XMLDataBase
             return GetObjectLogic.GetItems<T>(DataSet, DefaultItemName, this, args);
         }
 
-        public void AddNewDataSet<T>(string DataSet,List<T> Items ,string DefaultItemName = "Item")
+        public void AddNewDataSet<T>(string DataSet,List<T> Items ,string DefaultItemName = "Item", bool AutoSave = true)
         {
-            SetObjectLogic.AddNewObjects<T>(Items, DataSet, DefaultItemName, this);
+            if (Items.Count == 0) return;
+
+            SetObjectLogic.AddNewObjects<T>(Items, DataSet, DefaultItemName, this, AutoSave);
         }
 
-        public void UpdateDataSet<T>(string DataSet, List<T> Items, string DefaultItemName = "Item")
+        public void UpdateDataSet<T>(string DataSet, List<T> Items, string DefaultItemName = "Item", bool AutoSave = true)
         {
-            SetObjectLogic.UpdateObjects<T>(Items, DataSet, DefaultItemName, this);
+            if (Items.Count == 0) return;
+
+            SetObjectLogic.UpdateObjects<T>(Items, DataSet, DefaultItemName, this, AutoSave);
         }
 
-        public void DeleteItems<T>(string DataSet, List<T> Items, string DefaultItemName = "Item")
+        public void DeleteItems<T>(string DataSet, List<T> Items, string DefaultItemName = "Item", bool AutoSave = true)
         {
-            SetObjectLogic.DeleteDataItems<T>(Items, DataSet, DefaultItemName, this);
+            if (Items.Count == 0) return;
+
+            SetObjectLogic.DeleteDataItems<T>(Items, DataSet, DefaultItemName, this, AutoSave);
         }
 
         public OBJS.Data LoadSetting(OBJS.Data DataSet)
@@ -263,7 +273,7 @@ namespace XMLDataBase
             }
         }
 
-        public void SetData(List<OBJS.Data> Data, XmlDocument Document = null)
+        public void SetData(List<OBJS.Data> Data, XmlDocument Document = null, bool AutoSave = true)
         {
             if (!DoesDataStoreFileExist())
             {
@@ -279,7 +289,10 @@ namespace XMLDataBase
                 SetData(X, Document, false);
             });
 
-            SaveXMLDocument(Document);
+            if (AutoSave)
+            {
+                SaveXMLDocument(Document);
+            }
         }
 
         private void HandleSetData(OBJS.Data Data, XmlNode ParentRoot, XmlDocument Document, string ParentNode = "//DataStore")
@@ -419,7 +432,7 @@ namespace XMLDataBase
             return HasDataSet;
         }
 
-        public void DeleteDataSet(string DataSet)
+        public void DeleteDataSet(string DataSet, bool AutoSave = true)
         {
             if (!DoesDataStoreFileExist())
             {
@@ -438,7 +451,10 @@ namespace XMLDataBase
                 }
             }
 
-            SaveXMLDocument(Document);
+            if (AutoSave)
+            {
+                SaveXMLDocument(Document);
+            }
         }
 
         public void DeleteData(OBJS.Data Data)
@@ -479,7 +495,7 @@ namespace XMLDataBase
             SaveXMLDocument(Document);
         }
 
-        public void DeleteItem(string ItemLocation)
+        public void DeleteItem(string ItemLocation, bool AutoSave = true)
         {
             if (!DoesDataStoreFileExist())
             {
@@ -495,7 +511,11 @@ namespace XMLDataBase
             {
                 DeleteNode(Node);
             }
-            SaveXMLDocument(Document);
+
+            if (AutoSave)
+            {
+                SaveXMLDocument(Document);
+            }
         }
 
         private void DeleteNode(XmlNode Node)
@@ -534,9 +554,13 @@ namespace XMLDataBase
             SaveXMLDocument(Document);
         }
 
-        public XmlDocument GetXMLDocument()
+        public XmlDocument GetXMLDocument(bool GetNew = false)
         {
-            return GetXmlDocument(DataStoreLocation);
+            if (Document == null || GetNew)
+            {
+               return GetXmlDocument(DataStoreLocation);
+            }
+            return Document;
         }
 
         public bool SaveXMLDocument(XmlDocument Document)
@@ -570,7 +594,7 @@ namespace XMLDataBase
 
         public XmlDocument GetXmlDocument(string SaveLocation)
         {
-            XmlDocument Document = new XmlDocument();
+            Document = new XmlDocument();
 
             if (!DoesDataStoreFileExist())
             {
@@ -597,15 +621,30 @@ namespace XMLDataBase
             return Document;
         }
 
+        public string GetEncryptedXMLString()
+        {
+            Encryption EncryptionLogic = new Encryption();
+
+            BuildKey();
+            string CryptKey = Key;
+
+            string DecryptedString = GetXMLAsString(Document);
+
+            string EncryptedString = EncryptionLogic.EncryptText(DecryptedString, CryptKey);
+
+            return EncryptedString;
+        }
+
+        public string GetXMLString()
+        {
+            string DecryptedString = GetXMLAsString(Document);
+
+            return DecryptedString;
+        }
+
         public string GetXMLAsString(XmlDocument myxml)
         {
-
-            StringWriter sw = new StringWriter();
-            XmlTextWriter tx = new XmlTextWriter(sw);
-            myxml.WriteTo(tx);
-
-            string str = sw.ToString();// 
-            return str;
+            return myxml.OuterXml;
         }
 
         private string GetXMLString(string SaveLocation)

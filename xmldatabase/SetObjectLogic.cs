@@ -9,32 +9,32 @@ namespace XMLDataBase
     public static class SetObjectLogic
     {
 
-        public static void AddNewObjects<T>(List<T> Itens, string DataSet, string DefaultItemName, XMLDataBase.DataBase DataBase)
+        public static void AddNewObjects<T>(List<T> Itens, string DataSet, string DefaultItemName, XMLDataBase.DataBase DataBase, bool AutoSave)
         {
             List<OBJS.Data> DataSetItems = GetDataObject(DataSet, DefaultItemName, Itens);
 
-            DataBase.SetData(DataSetItems);
+            DataBase.SetData(DataSetItems, null, AutoSave);
         }
 
-        public static void UpdateObjects<T>(List<T> Items, string DataSet, string DefaultItemName, XMLDataBase.DataBase DataBase)
+        public static void UpdateObjects<T>(List<T> Items, string DataSet, string DefaultItemName, XMLDataBase.DataBase DataBase, bool AutoSave)
         {
             foreach (T Item in Items)
             {
-                DeleteDataItem(typeof(T), Item, DataBase);
+                DeleteDataItem(typeof(T), Item, DataBase, AutoSave);
             }
 
-            AddNewObjects(Items, DataSet, DefaultItemName, DataBase);
+            AddNewObjects(Items, DataSet, DefaultItemName, DataBase, AutoSave);
         }
 
-        public static void DeleteDataItems<T>(List<T> Items, string DataSet, string DefaultItemName, XMLDataBase.DataBase DataBase)
+        public static void DeleteDataItems<T>(List<T> Items, string DataSet, string DefaultItemName, XMLDataBase.DataBase DataBase, bool AutoSave)
         {
             foreach (T Item in Items)
             {
-                DeleteDataItem(typeof(T), Item, DataBase);
+                DeleteDataItem(typeof(T), Item, DataBase, AutoSave);
             }
         }
 
-        private static void DeleteDataItem(Type BaseType, object Item, XMLDataBase.DataBase DataBase)
+        private static void DeleteDataItem(Type BaseType, object Item, XMLDataBase.DataBase DataBase, bool AutoSave)
         {
             List<PropertyInfo> NodedLocationProps = GetProprites(OBJS.Types.NodedLocation, BaseType);
             if (NodedLocationProps.Count != 0)
@@ -42,9 +42,9 @@ namespace XMLDataBase
                 PropertyInfo NodeLocation = NodedLocationProps[0];
 
                 object ItemObject = NodeLocation.GetValue(Item, null);
-                string ItemValue = (ItemObject != null) ? ItemObject.ToString() : "";
+                string ItemValue = ItemObject?.ToString() ?? "";
 
-                DataBase.DeleteItem(ItemValue);
+                DataBase.DeleteItem(ItemValue, AutoSave);
             }
 
             List<PropertyInfo> NodeIDProps = GetProprites(OBJS.Types.NodeID, BaseType);
