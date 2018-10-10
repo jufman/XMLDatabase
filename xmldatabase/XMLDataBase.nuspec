@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>XMLDataBase.Jnet.Systems</id>
+    <version>$version$</version>
+    <authors>Justin Campbell</authors>
+    <owners>Justin Campbell</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>http://opensource.org/licenses/MS-PL</licenseUrl>
+    <projectUrl>https://github.com/jufman/XMLDatabase</projectUrl>
+    <iconUrl>http://github.com/contoso/UsefulStuff/nuget_icon.png</iconUrl>
+    <description>Library that can store data in a XML datafile with encription</description>
+    <releaseNotes>New Project</releaseNotes>
+    <copyright>Copyright ©2018 Jnet Systems</copyright>
+    <tags>XML Xpath</tags>
+  </metadata>
+</package>
