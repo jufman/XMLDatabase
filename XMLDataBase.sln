@@ -1,23 +1,11 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2036
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XMLDataBase", "XMLDataBase\XMLDataBase.csproj", "{F7B33F23-A8AF-4FE7-BD21-C1BB3DA53266}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XMLDataBaseTest", "XMLDataBaseTest\XMLDataBaseTest.csproj", "{DD85340E-53E6-421A-AA4B-E87536F83B72}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{470135CE-B6A4-417F-8AB5-3B97B0481EC9}"
-	ProjectSection(SolutionItems) = preProject
-		Local.testsettings = Local.testsettings
-		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
-		XMLDataBase.vsmdi = XMLDataBase.vsmdi
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tester", "Tester\Tester.csproj", "{8F2845D8-A922-40DE-BE20-EB2016439D24}"
-EndProject
 Global
-	GlobalSection(TestCaseManagementSettings) = postSolution
-		CategoryFile = XMLDataBase.vsmdi
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|Mixed Platforms = Debug|Mixed Platforms
@@ -37,28 +25,14 @@ Global
 		{F7B33F23-A8AF-4FE7-BD21-C1BB3DA53266}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{F7B33F23-A8AF-4FE7-BD21-C1BB3DA53266}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{F7B33F23-A8AF-4FE7-BD21-C1BB3DA53266}.Release|x86.ActiveCfg = Release|Any CPU
-		{DD85340E-53E6-421A-AA4B-E87536F83B72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DD85340E-53E6-421A-AA4B-E87536F83B72}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DD85340E-53E6-421A-AA4B-E87536F83B72}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{DD85340E-53E6-421A-AA4B-E87536F83B72}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{DD85340E-53E6-421A-AA4B-E87536F83B72}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{DD85340E-53E6-421A-AA4B-E87536F83B72}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DD85340E-53E6-421A-AA4B-E87536F83B72}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DD85340E-53E6-421A-AA4B-E87536F83B72}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{DD85340E-53E6-421A-AA4B-E87536F83B72}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{DD85340E-53E6-421A-AA4B-E87536F83B72}.Release|x86.ActiveCfg = Release|Any CPU
-		{8F2845D8-A922-40DE-BE20-EB2016439D24}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{8F2845D8-A922-40DE-BE20-EB2016439D24}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{8F2845D8-A922-40DE-BE20-EB2016439D24}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{8F2845D8-A922-40DE-BE20-EB2016439D24}.Debug|x86.ActiveCfg = Debug|x86
-		{8F2845D8-A922-40DE-BE20-EB2016439D24}.Debug|x86.Build.0 = Debug|x86
-		{8F2845D8-A922-40DE-BE20-EB2016439D24}.Release|Any CPU.ActiveCfg = Release|x86
-		{8F2845D8-A922-40DE-BE20-EB2016439D24}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{8F2845D8-A922-40DE-BE20-EB2016439D24}.Release|Mixed Platforms.Build.0 = Release|x86
-		{8F2845D8-A922-40DE-BE20-EB2016439D24}.Release|x86.ActiveCfg = Release|x86
-		{8F2845D8-A922-40DE-BE20-EB2016439D24}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E725C03F-7E1C-4702-9900-80AAB10BD897}
+	EndGlobalSection
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = XMLDataBase.vsmdi
 	EndGlobalSection
 EndGlobal
