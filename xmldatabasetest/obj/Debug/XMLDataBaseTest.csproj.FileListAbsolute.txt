@@ -1,7 +1,0 @@
-C:\Users\userc\Dropbox\Alpha c#\XMLDataBase\XMLDataBaseTest\bin\Debug\XMLDataBaseTest.dll
-C:\Users\userc\Dropbox\Alpha c#\XMLDataBase\XMLDataBaseTest\bin\Debug\XMLDataBaseTest.pdb
-C:\Users\userc\Dropbox\Alpha c#\XMLDataBase\XMLDataBaseTest\bin\Debug\XMLDataBase.dll
-C:\Users\userc\Dropbox\Alpha c#\XMLDataBase\XMLDataBaseTest\bin\Debug\XMLDataBase.pdb
-C:\Users\userc\Dropbox\Alpha c#\XMLDataBase\XMLDataBaseTest\obj\Debug\XMLDataBaseTest.csprojResolveAssemblyReference.cache
-C:\Users\userc\Dropbox\Alpha c#\XMLDataBase\XMLDataBaseTest\obj\Debug\XMLDataBaseTest.dll
-C:\Users\userc\Dropbox\Alpha c#\XMLDataBase\XMLDataBaseTest\obj\Debug\XMLDataBaseTest.pdb
